@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impacto dos Satélites na Observação do Céu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      scroll-behavior: smooth;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1rem;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      text-align: center;
+      font-size: 1.5rem;
+      z-index: 1000;
+    }
+
+    section {
+      height: 100vh;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      transition: background 1s ease-in-out;
+    }
+
+    .content {
+      color: white;
+      padding: 2rem;
+      max-width: 800px;
+      text-align: center;
+      font-size: 1.2rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
+      text-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    }
+
+    .content.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #ano1970 {
+      background-image: linear-gradient(to top, rgba(0,0,0,0.4), rgba(0,0,0,0)), url('1970.png');
+    }
+
+    #ano2025 {
+      background-image: linear-gradient(to top, rgba(0,0,0,0.4), rgba(0,0,0,0)), url('2025.png');
+    }
+
+    #ano2080 {
+      background-image: linear-gradient(to top, rgba(0,0,0,0.4), rgba(0,0,0,0)), url('2080.png');
+    }
+
+    footer {
+      display: flex;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 0.5rem 1rem;
+      color: white;
+      font-size: 0.9rem;
+      font-family: 'Montserrat', sans-serif;
+      width: 100%;
+      justify-content: flex-start;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    footer img {
+      height: 40px;
+      margin-right: 0.5rem;
+      border-radius: 4px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.5);
+    }
+
+    footer.hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    Simulando o impacto do lançamento de satélites nas observações astronômicas
+  </header>
+
+  <section id="ano1970">
+    <div class="content">
+      Em 1970, havia aproximadamente 130 satélites em órbita terrestre, e, em locais com céus escuros e sem poluição luminosa, era possível observar até 8.500 estrelas a olho nu em todo o céu.
+    </div>
+  </section>
+
+  <section id="ano2025">
+    <div class="content">
+      Em 2025, o número de satélites ativos em órbita ultrapassou 12.000, com mais de 6.000 pertencentes à constelação Starlink da SpaceX. Esse aumento contribuiu para a redução da visibilidade das estrelas, especialmente em áreas urbanas, onde a poluição luminosa limita a observação a cerca de 2.000 estrelas a olho nu.
+    </div>
+  </section>
+
+  <section id="ano2080">
+    <div class="content">
+      Projeções indicam que, até 2080, o número de satélites em órbita poderá ultrapassar 70.000, devido ao lançamento de megaconstelações por diversas empresas e governos. Esse cenário agravará a poluição luminosa e o risco de colisões, reduzindo ainda mais a quantidade de estrelas visíveis a olho nu, possivelmente limitando a observação a algumas centenas em áreas menos afetadas.
+    </div>
+  </section>
+
+  <footer id="page-footer" class="hidden">
+    <a href="https://darksky.org" target="_blank" style="display: flex; align-items: center; text-decoration: none; color: white;">
+      <img src="ida.png" alt="IDA">
+      <span>Este projeto é apoiado pela International Dark-Sky Association</span>
+    </a>
+  </footer>
+
+  <script>
+    const contents = document.querySelectorAll('.content');
+    const footer = document.getElementById('page-footer');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    contents.forEach(content => {
+      observer.observe(content);
+    });
+
+    const footerObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          footer.classList.remove('hidden');
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    footerObserver.observe(document.querySelector('#ano2080'));
+  </script>
+</body>
+</html>
