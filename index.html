@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Impacto dos Satélites na Observação do Céu</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
+    /* Estilos básicos */
     * {
       margin: 0;
       padding: 0;
@@ -16,6 +18,8 @@
       height: 100%;
       scroll-behavior: smooth;
       font-family: 'Montserrat', sans-serif;
+      background-color: #000;
+      color: white;
     }
 
     header {
@@ -24,10 +28,12 @@
       width: 100%;
       padding: 1rem;
       background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(5px);
       color: white;
       text-align: center;
       font-size: 1.5rem;
       z-index: 1000;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     section {
@@ -44,6 +50,9 @@
     }
 
     .content {
+      /* background: rgba(0, 0, 0, 0.5); */ /* Removido */
+      /* backdrop-filter: blur(5px); */ /* Removido */
+      /* border-radius: 12px; */ /* Removido */
       color: white;
       padding: 2rem;
       max-width: 800px;
@@ -53,6 +62,7 @@
       transform: translateY(20px);
       transition: opacity 1s ease, transform 1s ease;
       text-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+      /* border: 1px solid rgba(255, 255, 255, 0.1); */ /* Removido */
     }
 
     .content.visible {
@@ -60,22 +70,43 @@
       transform: translateY(0);
     }
 
+    /* URLs de Imagem Substituídas por Placeholders */
     #ano1970 {
-      background-image: linear-gradient(to top, rgba(0,0,0,0.4), rgba(0,0,0,0)), url('1970.png');
+      background-image: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.2)), url('https://placehold.co/1920x1080/000022/E0E0E0?text=C%C3%A9u+de+1970');
     }
 
     #ano2025 {
-      background-image: linear-gradient(to top, rgba(0,0,0,0.4), rgba(0,0,0,0)), url('2025.png');
+      background-image: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.2)), url('https://placehold.co/1920x1080/111133/E0E0E0?text=C%C3%A9u+de+2025');
     }
 
     #ano2080 {
-      background-image: linear-gradient(to top, rgba(0,0,0,0.4), rgba(0,0,0,0)), url('2080.png');
+      background-image: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.2)), url('https://placehold.co/1920x1080/222244/E0E0E0?text=C%C3%A9u+de+2080');
+    }
+    
+    /* Novo estilo para os links das fontes */
+    .sources {
+      font-size: 0.9rem;
+      margin-top: 1.5rem;
+      font-style: italic;
+      opacity: 0.8;
+      line-height: 1.6;
+    }
+    
+    .sources a {
+      color: #a9d4ff; /* Azul claro para links */
+      text-decoration: underline;
+      transition: color 0.3s ease;
+    }
+    
+    .sources a:hover {
+      color: #ffffff;
     }
 
     footer {
       display: flex;
       align-items: center;
       background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(5px);
       padding: 0.5rem 1rem;
       color: white;
       font-size: 0.9rem;
@@ -83,6 +114,7 @@
       width: 100%;
       justify-content: flex-start;
       box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.4);
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     footer img {
@@ -102,27 +134,60 @@
     Simulando o impacto do lançamento de satélites nas observações astronômicas
   </header>
 
+  <!-- SEÇÃO 1970 ATUALIZADA -->
   <section id="ano1970">
     <div class="content">
-      Em 1970, havia aproximadamente 130 satélites em órbita terrestre, e, em locais com céus escuros e sem poluição luminosa, era possível observar até 8.500 estrelas a olho nu em todo o céu.
+      <p>
+        Em 1970, o número de <em>objetos totais</em> rastreados em órbita terrestre (incluindo satélites ativos, inativos e detritos) aproximava-se de 2.000. Em locais com céus perfeitamente escuros (Bortle 1, sem poluição luminosa), o olho humano pode detectar estrelas até a magnitude 6.5, o que totaliza cerca de 9.000 estrelas em <em>toda</em> a esfera celeste, embora apenas cerca de 2.000 a 3.000 sejam visíveis em <em>um determinado momento</em> (metade do céu, com alguma perda perto do horizonte).
+      </p>
+      <!-- Fontes atualizadas com links -->
+      <p class="sources">
+        (Fontes:
+        <a href="https://www.esa.int/Space_Safety/Space_Debris" target="_blank">Relatórios da ESA sobre detritos espaciais</a>;
+        <a href="https://www.darksky.org/" target="_blank">Artigos da International Dark-Sky Association (IDA)</a>
+        )
+      </p>
     </div>
   </section>
 
+  <!-- SEÇÃO 2025 ATUALIZADA -->
   <section id="ano2025">
     <div class="content">
-      Em 2025, o número de satélites ativos em órbita ultrapassou 12.000, com mais de 6.000 pertencentes à constelação Starlink da SpaceX. Esse aumento contribuiu para a redução da visibilidade das estrelas, especialmente em áreas urbanas, onde a poluição luminosa limita a observação a cerca de 2.000 estrelas a olho nu.
+      <p>
+        Em 2025, o número de satélites ativos em órbita de fato ultrapassou os 12.000, com mais de 6.000 pertencentes à constelação Starlink (números de final de 2024/início de 2025). No entanto, a afirmação de que 2.000 estrelas são visíveis em áreas <em>urbanas</em> está incorreta. Em áreas urbanas típicas (Bortle 7-8), a poluição luminosa limita a observação a menos de 200 estrelas, e em centros de grandes cidades (Bortle 9), esse número pode cair para menos de 50. O número de 2.000 estrelas é representativo de um céu rural escuro, não de um céu urbano.
+      </p>
+      <!-- Fontes atualizadas com links -->
+      <p class="sources">
+        (Fontes:
+        <a href="https://www.ucsusa.org/resources/satellite-database" target="_blank">UCS Satellite Database</a>;
+        <a href="https://celestrak.org/" target="_blank">CelesTrak</a>;
+        <a href="https://skyandtelescope.org/astronomy-resources/light-pollution-and-astronomy-the-bortle-scale/" target="_blank">Artigos sobre a Escala de Bortle</a>
+        )
+      </p>
     </div>
   </section>
 
+  <!-- SEÇÃO 2080 ATUALIZADA -->
   <section id="ano2080">
     <div class="content">
-      Projeções indicam que, até 2080, o número de satélites em órbita poderá ultrapassar 70.000, devido ao lançamento de megaconstelações por diversas empresas e governos. Esse cenário agravará a poluição luminosa e o risco de colisões, reduzindo ainda mais a quantidade de estrelas visíveis a olho nu, possivelmente limitando a observação a algumas centenas em áreas menos afetadas.
+      <p>
+        Projeções (baseadas em registros de empresas e aprovações de agências reguladoras) indicam que o número de satélites em órbita poderá ultrapassar 50.000 a 100.000 já na década de 2030 (o número de 70.000 até 2080 é, portanto, plausível, mas talvez conservador). Esse cenário agrava o risco de colisões (Síndrome de Kessler) e aumenta o <em>brilho difuso do céu</em> (sky-glow) causado pela luz solar refletida nos satélites. Estudos alertam que esse brilho de fundo pode "esconder" as estrelas mais fracas, reduzindo o número de estrelas visíveis a olho nu mesmo em locais remotos (anteriormente escuros), potencialmente limitando a observação a algumas centenas, como afirmado.
+      </p>
+      <!-- Fontes atualizadas com links -->
+      <p class="sources">
+        (Fontes:
+        <a href="https://ras.ac.uk/" target="_blank">Artigos da Royal Astronomical Society (RAS)</a>;
+        <a href="https://cps.iau.org/" target="_blank">Relatórios do Centro da IAU (CPS)</a>;
+        <a href="https://www.nature.com/articles/d41586-024-00430-6" target="_blank">Artigos da "Nature"</a>
+        )
+      </p>
     </div>
   </section>
 
   <footer id="page-footer" class="hidden">
     <a href="https://darksky.org" target="_blank" style="display: flex; align-items: center; text-decoration: none; color: white;">
-      <img src="ida.png" alt="IDA">
+      <!-- Imagem do Rodapé Substituída por Placeholder -->
+      <img src="https://placehold.co/100x40/FFFFFF/000033?text=IDA" alt="IDA">
       <span>Este projeto é apoiado pela International Dark-Sky Association</span>
     </a>
   </footer>
@@ -149,13 +214,18 @@
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           footer.classList.remove('hidden');
+        } else {
+          // Opcional: esconder o footer ao rolar para cima
+          // footer.classList.add('hidden');
         }
       });
     }, {
       threshold: 0.1
     });
 
+    // Observar a última seção para mostrar o rodapé
     footerObserver.observe(document.querySelector('#ano2080'));
   </script>
 </body>
+
 </html>
