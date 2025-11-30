@@ -30,10 +30,78 @@
       background: rgba(0, 0, 0, 0.6);
       backdrop-filter: blur(5px);
       color: white;
-      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       font-size: 1.5rem;
       z-index: 1000;
       border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .header-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .header-title:hover {
+      color: #a9d4ff;
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+    }
+
+    nav a:hover {
+      color: #a9d4ff;
+      text-shadow: 0 0 10px rgba(169, 212, 255, 0.5);
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem 0.5rem;
+      }
+
+      .header-title {
+        font-size: 1.2rem;
+        text-align: center;
+      }
+
+      nav {
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      nav a {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+      }
+
+      .profile-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .profile-image {
+        width: 120px;
+        height: 120px;
+      }
     }
 
     section {
@@ -81,6 +149,323 @@
 
     #ano2080 {
       background-image: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.2)), url('2080.png');
+    }
+
+    #sobre-nos {
+      background-image: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.2)), url('1970.png');
+      min-height: 100vh;
+      height: auto;
+      padding: 6rem 2rem 4rem;
+      flex-direction: column;
+      align-items: center;
+      display: none;
+    }
+
+    #sobre-nos.show {
+      display: flex;
+    }
+
+    #sobre-projeto {
+      background-image: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.2)), url('1970.png');
+      min-height: 100vh;
+      height: auto;
+      padding: 6rem 2rem 4rem;
+      flex-direction: column;
+      align-items: center;
+      display: none;
+    }
+
+    #sobre-projeto.show {
+      display: flex;
+    }
+
+    #contato {
+      background-image: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.2)), url('1970.png');
+      min-height: 100vh;
+      height: auto;
+      padding: 6rem 2rem 4rem;
+      flex-direction: column;
+      align-items: center;
+      display: none;
+    }
+
+    #contato.show {
+      display: flex;
+    }
+
+    .contact-container {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .contact-card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 12px;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .contact-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .contact-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1a4d1a;
+      margin-bottom: 1rem;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .contact-email {
+      font-size: 1.1rem;
+      color: #2d5a2d;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .contact-email a {
+      color: #2d5a2d;
+      text-decoration: none;
+      transition: color 0.3s ease, text-decoration 0.3s ease;
+    }
+
+    .contact-email a:hover {
+      color: #1a4d1a;
+      text-decoration: underline;
+    }
+
+    .pdf-viewer-container {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto 3rem;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .pdf-viewer {
+      width: 100%;
+      height: 800px;
+      border: none;
+      border-radius: 8px;
+      min-height: 600px;
+    }
+
+    @media (max-width: 768px) {
+      .pdf-viewer {
+        height: 600px;
+        min-height: 400px;
+      }
+    }
+
+    .projeto-content {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .projeto-section {
+      margin-bottom: 3rem;
+    }
+
+    .projeto-section h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: white;
+      text-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    }
+
+    .projeto-section h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      color: white;
+      text-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    }
+
+    .projeto-text {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 12px;
+      padding: 2.5rem;
+      color: #333;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .projeto-text.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .projeto-text p {
+      margin-bottom: 1.5rem;
+    }
+
+    .projeto-text em {
+      font-style: italic;
+      font-weight: 600;
+    }
+
+    .projeto-text ul {
+      list-style-type: disc;
+      padding-left: 2rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
+
+    .projeto-text ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .projeto-text strong {
+      font-weight: 700;
+      color: #1a4d1a;
+    }
+
+    .gifs-container {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      align-items: flex-start;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+
+    .gif-wrapper {
+      flex: 1;
+      min-width: 300px;
+      max-width: 500px;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .gifs-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .gif-wrapper {
+        max-width: 100%;
+      }
+    }
+
+    .gif-wrapper img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .graph-container {
+      width: 100%;
+      margin: 2rem 0;
+      text-align: center;
+    }
+
+    .graph-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      background: rgba(255, 255, 255, 0.95);
+      padding: 1rem;
+    }
+
+    .homepage-section {
+      display: flex;
+    }
+
+    .homepage-section.hide {
+      display: none;
+    }
+
+    .profile-container {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .profile-card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 12px;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      display: flex;
+      gap: 2rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .profile-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .profile-image {
+      flex-shrink: 0;
+      width: 150px;
+      height: 150px;
+    }
+
+    .profile-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid #90ee90;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .profile-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .profile-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1a4d1a;
+      margin-bottom: 1rem;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .profile-section-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #1a4d1a;
+      margin-bottom: 0.5rem;
+      font-family: 'Montserrat', sans-serif;
+      border-bottom: 1px solid #d3d3d3;
+      padding-bottom: 0.5rem;
+    }
+
+    .profile-biography {
+      color: #808080;
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-top: 1rem;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .profile-divider {
+      border-bottom: 1px solid #d3d3d3;
+      margin-top: 1rem;
     }
     
     /* Novo estilo para os links das fontes */
@@ -131,11 +516,352 @@
 </head>
 <body>
   <header>
-    Simulando o impacto do lançamento de satélites nas observações astronômicas
+    <div class="header-title" id="header-title">
+      Simulando o impacto do lançamento de satélites nas observações astronômicas
+    </div>
+    <nav>
+      <a href="#" id="nav-sobre-nos">Sobre Nós</a>
+      <a href="#" id="nav-sobre-projeto">Sobre o Projeto</a>
+      <a href="#" id="nav-contato">Contato</a>
+    </nav>
   </header>
 
+  <!-- SEÇÃO SOBRE NÓS -->
+  <section id="sobre-nos">
+    <div class="profile-container">
+      <!-- Perfil Maycon -->
+      <div class="profile-card">
+        <div class="profile-image">
+          <img src="maycon.png" alt="Maycon Jorge Deláqua da Silva">
+        </div>
+        <div class="profile-info">
+          <div class="profile-name">Maycon Jorge Deláqua da Silva</div>
+          <div class="profile-section-title">Biografia</div>
+          <div class="profile-biography">
+            Graduando em Engenharia de Computação pelo Instituto Federal de Educação, Ciência e Tecnologia Fluminense. Atualmente atuo no projeto de Iniciação Científica 'Elaboração de catálogo de quasares para ~6000 graus quadrados do S-PLUS DR6' onde usamos aprendizado de máquina e Ciência de Dados para classificação de objetos e na estimativa de redshifts fotométricos de quasares.
+          </div>
+          <div class="profile-divider"></div>
+        </div>
+      </div>
+
+      <!-- Perfil Pedro -->
+      <div class="profile-card">
+        <div class="profile-image">
+          <img src="pedro.jpg" alt="Pedro Henrique R. de Andrade">
+        </div>
+        <div class="profile-info">
+          <div class="profile-name">Pedro Henrique R. de Andrade</div>
+          <div class="profile-section-title">Biografia</div>
+          <div class="profile-biography">
+            Olá! Meu nome é Pedro Henrique e sou estudante de graduação em Engenharia de Computação no Instituto Federal Fluminense, no Rio de Janeiro, Brasil. Trabalho com astronomia desde 2022 e, atualmente, estou envolvido em meu terceiro projeto de pesquisa, com foco em estrelas e na estrutura da nossa Galáxia. Sou apaixonado por iniciativas de código aberto e por divulgação científica, buscando integrar métodos computacionais a problemas astrofísicos para tornar a ciência mais acessível e colaborativa.
+          </div>
+          <div class="profile-divider"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO SOBRE O PROJETO -->
+  <section id="sobre-projeto">
+    <div class="projeto-content">
+      <!-- Visualizador de PDF -->
+      <div class="pdf-viewer-container">
+        <iframe class="pdf-viewer" src="relat.pdf#toolbar=1&navpanes=1&scrollbar=1" type="application/pdf">
+          <p>Seu navegador não suporta visualização de PDFs. <a href="relat.pdf" target="_blank">Clique aqui para baixar o PDF</a>.</p>
+        </iframe>
+      </div>
+
+      <!-- Conteúdo do Projeto -->
+      <div class="projeto-section">
+        <div class="projeto-text">
+          <h2>ATUALIZAÇÕES RECENTES:</h2>
+          
+          <h3>Metodologia</h3>
+          
+          <p>
+            A metodologia adotada no STAR Clean integra duas frentes complementares: a geração de dados sintéticos fisicamente realistas por meio do simulador VOID e o desenvolvimento de uma arquitetura de deep learning especializada, denominada STAR, voltada para remoção adaptativa de rastros de satélites em observações astronômicas de alta cadência. Essa combinação permite avaliar e treinar a rede de forma controlada, com pares perfeitos de entrada contaminada e alvo limpo, impossíveis de serem obtidos em observações reais.
+          </p>
+
+          <h3>Simulação Física com o VOID</h3>
+
+          <p>
+            O VOID foi projetado como um pipeline físico completo capaz de reproduzir de maneira realista a cadeia de formação da imagem em sensores CMOS astronômicos. Para cada simulação, o módulo StarGenerator sintetiza campos estelares utilizando perfis PSF baseados na função de Moffat, garantindo representação precisa das caudas atmosféricas e preservação fotométrica pela normalização exata do fluxo. Magnitudes são convertidas para elétrons via equação de Pogson, e os parâmetros físicos — posição, FWHM e beta — são amostrados para representar condições variadas de observação.
+          </p>
+
+          <p>
+            O módulo SatelliteGenerator gera rastros dinâmicos através de superamostragem espacial da trajetória do satélite e integração contínua de PSFs ao longo do movimento, resultando em traços densos, contínuos e compatíveis com rastros observados em sensores reais. O CMOSSensor finaliza o processo aplicando a cadeia completa de ruído físico: fundo do céu, corrente de escuridão, shot noise, PRNU, ruído de leitura, ganho e saturação. Cada conjunto de dados inclui um cubo "Clean Ground Truth" (sem satélite) e um cubo "Dirty Input" (com satélite), ambos exportados em FITS e NPY com metadados físicos completos.
+          </p>
+
+          <h3>Arquitetura STAR para Remoção Adaptativa</h3>
+
+          <p>
+            O modelo STAR utiliza uma arquitetura U-Net 2.5D, onde os frames temporais são tratados como canais de entrada, garantindo eficiência computacional superior às abordagens 3D tradicionais. O encoder emprega blocos residuais e pooling progressivo para extrair estruturas de alto nível, enquanto o bottleneck incorpora um módulo de atenção espaço-temporal capaz de distinguir componentes estáticos (estrelas) de elementos dinâmicos (satélites). A atenção temporal modula os canais para identificar frames contaminados, enquanto a atenção espacial produz máscaras suaves sobre regiões alteradas. A combinação residual das atenções permite que o modelo foque na remoção dos rastros sem degradar o fluxo estelar.
+          </p>
+
+          <p>
+            O decoder reconstrói a imagem espacial com upsampling bilinear seguido de convoluções, evitando padrões artificiais e preservando o formato das estrelas. A rede não prediz diretamente a imagem limpa; em vez disso, estima o componente de ruído/satélite, que é subtraído da entrada para garantir melhor preservação da fotometria.
+          </p>
+
+          <h3>Funções de Perda e Treinamento</h3>
+
+          <p>
+            A função de perda combina um termo L1 para reconstrução pixel a pixel e um termo de conservação fotométrica que penaliza erros no fluxo total da cena. Esse segundo componente é crucial, pois garante que o modelo preserve a integridade das estrelas mesmo quando os rastros de satélite passam sobre elas. O treinamento é conduzido com AdamW, política de redução de learning rate em plateau, e checkpoints automáticos. Os conjuntos de validação seguem a mesma distribuição física dos dados de treino, assegurando avaliação consistente.
+          </p>
+
+          <h3>Métodos Clássicos para Comparação</h3>
+
+          <p>
+            Para estabelecer uma linha de base, três técnicas foram aplicadas às mesmas sequências temporais simuladas: Sigma Clipping, Filtro Mediano e LA Cosmic. Cada método foi implementado de forma padronizada, operando em precisão float64 e utilizando o mesmo cubo temporal. Todos os métodos geram uma imagem final por empilhamento médio dos frames processados. O Sigma Clipping remove outliers em séries temporais por pixel; o Filtro Mediano aplica suavização espacial frame a frame; e o LA Cosmic utiliza detecção morfológica de artefatos intensos baseada em gradientes e limiares fotométricos.
+          </p>
+
+          <p>
+            Os gráficos gerados são indicados na sessão de resultados. Os GIFs abaixo demonstram a comparação dos dois métodos: Sigma Clipping e STAR Clean. Nele, é possível observar a diferença em tempo real da remoção do satélite.
+          </p>
+
+          <!-- GIFs lado a lado -->
+          <div class="gifs-container">
+            <div class="gif-wrapper">
+              <img src="sample_0008_sigma_removal.gif" alt="Sigma Clipping Removal">
+            </div>
+            <div class="gif-wrapper">
+              <img src="sample_0008_star_removal.gif" alt="STAR Clean Removal">
+            </div>
+          </div>
+
+          <h2>Resultados</h2>
+
+          <p>
+            A avaliação do STAR Clean foi conduzida utilizando métricas quantitativas, análise fotométrica e testes de desempenho, além de comparações diretas com métodos clássicos amplamente utilizados na astronomia. Os resultados demonstram que o modelo proposto supera significativamente as abordagens tradicionais tanto em recuperação científica quanto em velocidade operacional. A seguir, descrevemos os principais achados e a interpretação dos gráficos fornecidos.
+          </p>
+
+          <h3>1. Desempenho Computacional vs. Preservação de Dados</h3>
+
+          <p>
+            O primeiro gráfico ("Processing Speed vs. Data Preservation") apresenta o trade-off típico entre velocidade e fidelidade científica. O STAR Clean, tanto em GPU quanto em CPU, alcança alta preservação fotométrica (~98–100%) mesmo com tempos de processamento substancialmente inferiores aos métodos tradicionais.
+          </p>
+
+          <ul>
+            <li>STAR Clean (GPU) apresenta o melhor desempenho geral: tempo por frame da ordem de dezenas de milissegundos e preservação de fluxo próxima ao ideal.</li>
+            <li>Sigma Clipping preserva quase 100% do fluxo apenas porque remove dados demais, mascarando valores, resultando em perda de informação espacial apesar da integridade numérica.</li>
+            <li>LA Cosmic apresenta tempo elevado (>2 s/frame) e preservação limitada (~75%).</li>
+            <li>Filtro Mediano é rápido, mas altera drasticamente o fluxo fotométrico (<60%).</li>
+            <li>A região verde indica o "regime ideal" de operação: alto desempenho com mínima perda científica — ocupada exclusivamente pelo STAR Clean.</li>
+          </ul>
+
+          <div class="graph-container">
+            <img src="tradeoff_speed_quality.png" alt="Trade-off entre velocidade e qualidade">
+          </div>
+
+          <h3>2. Conservação Fotométrica</h3>
+
+          <p>
+            O segundo conjunto de gráficos (Total Flux, Preservation Rate e Flux Conservation Error) analisa a precisão fotométrica de forma detalhada.
+          </p>
+
+          <p>
+            <strong>(a) Fluxo Fotométrico Total</strong>
+          </p>
+          <ul>
+            <li>O fluxo do Ground Truth é 228.4 ADU.</li>
+            <li>O STAR Clean reconstrói 224.8 ADU (erro mínimo).</li>
+            <li>Sigma Clipping retorna valor próximo ao real devido ao mascaramento, mas com perda estrutural.</li>
+            <li>Filtro Mediano distorce severamente a cena, produzindo 388.1 ADU — inflacionado pela suavização excessiva.</li>
+          </ul>
+
+          <p>
+            <strong>(b) Taxa de Preservação</strong>
+          </p>
+          <ul>
+            <li>STAR Clean: 98.4%, o mais alto entre os métodos que realmente reconstroem a cena.</li>
+            <li>Filtro Mediano: 169.9%, indicando superestimação artificial do fluxo.</li>
+            <li>Sigma Clipping: 100% numérico, mas sem fidelidade morfológica.</li>
+          </ul>
+
+          <p>
+            <strong>(c) Erro de Conservação do Fluxo</strong>
+          </p>
+          <ul>
+            <li>STAR Clean: 1.6%, valor típico de modelos que preservam fotometria realista.</li>
+            <li>Sigma Clipping: 0%, mas à custa da remoção de conteúdo.</li>
+            <li>Filtro Mediano: erro extremo (~70%).</li>
+          </ul>
+
+          <p>
+            Esses gráficos confirmam que o STAR Clean preserva fluxo de forma fisicamente consistente, enquanto outros métodos ou removem informação demais ou distorcem a imagem.
+          </p>
+
+          <div class="graph-container">
+            <img src="flux_preservation.png" alt="Preservação de fluxo fotométrico">
+          </div>
+
+          <h3>3. Tempo de Processamento e Throughput</h3>
+
+          <p>
+            O terceiro conjunto de gráficos compara o tempo por frame e o throughput operacional (frames por hora), ambos essenciais para aplicações de alta cadência:
+          </p>
+
+          <p>
+            <strong>(a) Tempo por Frame</strong>
+          </p>
+          <ul>
+            <li>STAR Clean (GPU): 0.034 s</li>
+            <li>STAR Clean (CPU): 0.087 s</li>
+            <li>Sigma Clipping: 0.929 s</li>
+            <li>LA Cosmic: 2.5 s</li>
+            <li>Filtro Mediano: 0.300 s</li>
+          </ul>
+
+          <p>
+            O STAR Clean processa imagens 27× mais rápido que Sigma Clipping e ~73× mais rápido que LA Cosmic.
+          </p>
+
+          <p>
+            <strong>(b) Throughput</strong>
+          </p>
+          <ul>
+            <li>STAR Clean (GPU): 107,517 frames/hora</li>
+            <li>STAR Clean (CPU): 41,327 frames/hora</li>
+            <li>Sigma Clipping: 3,874 frames/hora</li>
+            <li>LA Cosmic: 1,440 frames/hora</li>
+            <li>Filtro Mediano: 12,000 frames/hora</li>
+          </ul>
+
+          <p>
+            Com GPU, o STAR Clean atinge throughput compatível com pipelines de survey de última geração.
+          </p>
+
+          <div class="graph-container">
+            <img src="processing_speed.png" alt="Velocidade de processamento">
+          </div>
+
+          <h3>4. Métricas Científicas de Qualidade da Reconstrução</h3>
+
+          <p>
+            O quarto conjunto de gráficos avalia PSNR, SSIM, precisão fotométrica e preservação de bordas.
+          </p>
+
+          <p>
+            <strong>PSNR</strong>
+          </p>
+          <ul>
+            <li>STAR Clean atinge 38.5 dB, muito acima dos métodos clássicos.</li>
+            <li>Sigma Clipping alcança apenas 22.1 dB.</li>
+            <li>LA Cosmic atinge 28.3 dB.</li>
+          </ul>
+
+          <p>
+            <strong>SSIM</strong>
+          </p>
+          <ul>
+            <li>STAR Clean: 0.98, mostrando preservação estrutural quase perfeita.</li>
+            <li>Sigma Clipping: 0.71.</li>
+            <li>LA Cosmic: 0.84.</li>
+          </ul>
+
+          <p>
+            <strong>Fotometric Accuracy</strong>
+          </p>
+          <ul>
+            <li>STAR Clean: 99.7%, praticamente perfeito.</li>
+            <li>Sigma Clipping: apenas 33.4%.</li>
+            <li>LA Cosmic: 75%.</li>
+          </ul>
+
+          <p>
+            <strong>Edge Preservation</strong>
+          </p>
+          <ul>
+            <li>STAR Clean: 0.94, preservando morfologia das estrelas.</li>
+            <li>LA Cosmic: 0.68.</li>
+            <li>Sigma Clipping: 0.45.</li>
+          </ul>
+
+          <p>
+            O STAR Clean mostra desempenho superior em todas as métricas críticas para ciência astronômica.
+          </p>
+
+          <div class="graph-container">
+            <img src="scientific_metrics.png" alt="Métricas científicas">
+          </div>
+
+          <h3>5. Impacto em Surveys: Recuperação de Dados</h3>
+
+          <p>
+            O último gráfico mede quantas observações contaminadas podem ser recuperadas em um survey com 10.000 imagens e 15% de contaminação.
+          </p>
+
+          <ul>
+            <li>Sem processamento: 8.500 imagens aproveitáveis.</li>
+            <li>STAR Clean: 9.130 imagens recuperadas (91.3%).</li>
+            <li>LA Cosmic: 7.500 (75%).</li>
+            <li>Sigma Clipping: apenas 3.340 (33%).</li>
+          </ul>
+
+          <p>
+            Isso demonstra que o STAR Clean praticamente elimina o impacto da contaminação por satélites, restaurando imagens que seriam descartadas por outros métodos.
+          </p>
+
+          <div class="graph-container">
+            <img src="survey_impact.png" alt="Impacto em surveys">
+          </div>
+
+          <h2>Síntese dos Resultados</h2>
+
+          <p>
+            Os cinco conjuntos de gráficos evidenciam de forma convergente que:
+          </p>
+
+          <ul>
+            <li>O STAR Clean apresenta a melhor relação entre velocidade, preservação fotométrica e qualidade estrutural.</li>
+            <li>Métodos clássicos falham em pelo menos um dos aspectos essenciais: precisão, velocidade ou integridade morfológica.</li>
+            <li>O STAR Clean permite recuperar mais de 90% das observações afetadas, superando qualquer abordagem tradicional.</li>
+          </ul>
+
+          <h2>Conclusão:</h2>
+
+          <p>
+            Os resultados obtidos demonstram que o STAR Clean representa um avanço significativo na remoção de rastros de satélites em imagens astronômicas, combinando precisão científica, preservação fotométrica e desempenho operacional em níveis que superam amplamente os métodos tradicionais. A análise comparativa mostrou que a arquitetura proposta atinge um equilíbrio raro: processa frames em tempo muito inferior ao das técnicas clássicas, enquanto mantém a integridade do fluxo estelar e a morfologia das fontes com alta fidelidade. Os gráficos de desempenho confirmam que o STAR Clean ocupa sozinho a região ideal do trade-off entre velocidade e preservação de dados, atingindo tempos por frame da ordem de milissegundos e preservação fotométrica acima de 98%.
+          </p>
+
+          <p>
+            As métricas fotométricas e estruturais reforçam essa consistência: o modelo alcança valores de PSNR e SSIM substancialmente superiores aos demais, ao mesmo tempo em que apresenta o menor erro de conservação de fluxo entre todos os métodos comparados. Em cenários adversos, como rastros cruzando estrelas brilhantes ou múltiplas trilhas simultâneas, o STAR Clean mantém precisão acima de 99% na recuperação do brilho original das fontes, evitando tanto a suavização excessiva observada no filtro mediano quanto a perda estrutural causada pelo Sigma Clipping. Além disso, o modelo preserva bordas e perfis estelares de maneira muito mais eficiente que abordagens como o LA Cosmic, reduzindo artefatos de interpolação e garantindo reconstruções visualmente contínuas.
+          </p>
+
+          <p>
+            Outro ponto crucial é a escalabilidade. Os resultados de throughput mostram que o STAR Clean é compatível com pipelines de alta cadência e operações de surveys modernos, processando mais de 100 mil frames por hora em GPU e dezenas de milhares em CPU. Essa capacidade se reflete diretamente no impacto científico: ao aplicar o modelo a um cenário simulado de 10 mil imagens com 15% de contaminação, o STAR Clean recuperou mais de 91% das observações afetadas — quase o triplo do desempenho de métodos tradicionais como LA Cosmic e muito acima da eficiência limitada do Sigma Clipping.
+          </p>
+
+          <p>
+            Em conjunto, esses resultados mostram que a integração entre simulação física realista e uma arquitetura neural especializada não apenas resolve as limitações conhecidas dos métodos clássicos, como estabelece um novo padrão para o pré-processamento astronômico diante da crescente contaminação por mega-constelações. O STAR Clean emerge, assim, como uma solução robusta, escalável e cientificamente confiável, capaz de preservar a qualidade dos dados e reduzir significativamente as perdas observacionais em surveys atuais e futuros.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO CONTATO -->
+  <section id="contato">
+    <div class="contact-container">
+      <!-- Contato Maycon -->
+      <div class="contact-card">
+        <div class="contact-name">Maycon Jorge Deláqua da Silva</div>
+        <div class="contact-email">
+          <a href="mailto:maycondelaqua46@gmail.com">maycondelaqua46@gmail.com</a>
+        </div>
+      </div>
+
+      <!-- Contato Pedro -->
+      <div class="contact-card">
+        <div class="contact-name">Pedro Henrique R. de Andrade</div>
+        <div class="contact-email">
+          <a href="mailto:pedroiff0@gmail.com">pedroiff0@gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- SEÇÃO 1970 ATUALIZADA -->
-  <section id="ano1970">
+  <section id="ano1970" class="homepage-section">
     <div class="content">
       <p>
         Em 1970, o número de <em>objetos totais</em> rastreados em órbita terrestre (incluindo satélites ativos, inativos e detritos) aproximava-se de 2.000. Em locais com céus perfeitamente escuros (Bortle 1, sem poluição luminosa), o olho humano pode detectar estrelas até a magnitude 6.5, o que totaliza cerca de 9.000 estrelas em <em>toda</em> a esfera celeste, embora apenas cerca de 2.000 a 3.000 sejam visíveis em <em>um determinado momento</em> (metade do céu, com alguma perda perto do horizonte).
@@ -151,7 +877,7 @@
   </section>
 
   <!-- SEÇÃO 2025 ATUALIZADA -->
-  <section id="ano2025">
+  <section id="ano2025" class="homepage-section">
     <div class="content">
       <p>
         Em 2025, o número de satélites ativos em órbita de fato ultrapassou os 12.000, com mais de 6.000 pertencentes à constelação Starlink (números de final de 2024/início de 2025). No entanto, a afirmação de que 2.000 estrelas são visíveis em áreas <em>urbanas</em> está incorreta. Em áreas urbanas típicas (Bortle 7-8), a poluição luminosa limita a observação a menos de 200 estrelas, e em centros de grandes cidades (Bortle 9), esse número pode cair para menos de 50. O número de 2.000 estrelas é representativo de um céu rural escuro, não de um céu urbano.
@@ -168,7 +894,7 @@
   </section>
 
   <!-- SEÇÃO 2080 CORRIGIDA -->
-  <section id="ano2080">
+  <section id="ano2080" class="homepage-section">
     <div class="content">
       <p>
         Projeções (baseadas em registros de empresas e aprovações de agências reguladoras) indicam que o número de satélites em órbita poderá ultrapassar 50.000 a 100.000 já na década de 2030 (o número de 70.000 até 2080 é, portanto, plausível, mas talvez conservador). Esse cenário agrava o risco de colisões (Síndrome de Kessler) e aumenta o <em>brilho difuso do céu</em> (sky-glow) causado pela luz solar refletida nos satélites. Estudos alertam que esse brilho de fundo pode "esconder" as estrelas mais fracas, reduzindo o número de estrelas visíveis a olho nu mesmo em locais remotos (anteriormente escuros), potencialmente limitando a observação a algumas centenas, como afirmado.
@@ -192,8 +918,119 @@
   </footer>
 
   <script>
-    const contents = document.querySelectorAll('.content');
+    // Navegação entre páginas
+    const headerTitle = document.getElementById('header-title');
+    const navSobreNos = document.getElementById('nav-sobre-nos');
+    const navSobreProjeto = document.getElementById('nav-sobre-projeto');
+    const navContato = document.getElementById('nav-contato');
+    const sobreNosSection = document.getElementById('sobre-nos');
+    const sobreProjetoSection = document.getElementById('sobre-projeto');
+    const contatoSection = document.getElementById('contato');
+    const homepageSections = document.querySelectorAll('.homepage-section');
     const footer = document.getElementById('page-footer');
+
+    // Função para mostrar a homepage
+    function showHomepage() {
+      homepageSections.forEach(section => {
+        section.classList.remove('hide');
+      });
+      sobreNosSection.classList.remove('show');
+      sobreProjetoSection.classList.remove('show');
+      contatoSection.classList.remove('show');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      footer.classList.add('hidden');
+    }
+
+    // Função para mostrar a seção "Sobre Nós"
+    function showSobreNos() {
+      homepageSections.forEach(section => {
+        section.classList.add('hide');
+      });
+      sobreNosSection.classList.add('show');
+      sobreProjetoSection.classList.remove('show');
+      contatoSection.classList.remove('show');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      footer.classList.add('hidden');
+      
+      // Animar os cards quando aparecer
+      setTimeout(() => {
+        const profileCards = document.querySelectorAll('.profile-card');
+        profileCards.forEach((card, index) => {
+          setTimeout(() => {
+            card.classList.add('visible');
+          }, index * 200);
+        });
+      }, 100);
+    }
+
+    // Função para mostrar a seção "Sobre o Projeto"
+    function showSobreProjeto() {
+      homepageSections.forEach(section => {
+        section.classList.add('hide');
+      });
+      sobreNosSection.classList.remove('show');
+      sobreProjetoSection.classList.add('show');
+      contatoSection.classList.remove('show');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      footer.classList.add('hidden');
+      
+      // Animar o conteúdo quando aparecer
+      setTimeout(() => {
+        const projetoTexts = document.querySelectorAll('.projeto-text');
+        projetoTexts.forEach(text => {
+          text.classList.add('visible');
+        });
+      }, 100);
+    }
+
+    // Função para mostrar a seção "Contato"
+    function showContato() {
+      homepageSections.forEach(section => {
+        section.classList.add('hide');
+      });
+      sobreNosSection.classList.remove('show');
+      sobreProjetoSection.classList.remove('show');
+      contatoSection.classList.add('show');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      footer.classList.add('hidden');
+      
+      // Animar os cards de contato quando aparecer
+      setTimeout(() => {
+        const contactCards = document.querySelectorAll('.contact-card');
+        contactCards.forEach((card, index) => {
+          setTimeout(() => {
+            card.classList.add('visible');
+          }, index * 200);
+        });
+      }, 100);
+    }
+
+    // Event listeners
+    headerTitle.addEventListener('click', (e) => {
+      e.preventDefault();
+      showHomepage();
+    });
+
+    navSobreNos.addEventListener('click', (e) => {
+      e.preventDefault();
+      showSobreNos();
+    });
+
+    navSobreProjeto.addEventListener('click', (e) => {
+      e.preventDefault();
+      showSobreProjeto();
+    });
+
+    navContato.addEventListener('click', (e) => {
+      e.preventDefault();
+      showContato();
+    });
+
+    // Observadores para animações
+    const contents = document.querySelectorAll('.content');
+    const profileCards = document.querySelectorAll('.profile-card');
+    const projetoTexts = document.querySelectorAll('.projeto-text');
+    const contactCards = document.querySelectorAll('.contact-card');
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -209,21 +1046,66 @@
       observer.observe(content);
     });
 
-    const footerObserver = new IntersectionObserver((entries) => {
+    // Observar cards de perfil apenas quando a seção estiver visível
+    const profileObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          footer.classList.remove('hidden');
-        } else {
-          // Opcional: esconder o footer ao rolar para cima
-          // footer.classList.add('hidden');
+        if (entry.isIntersecting && sobreNosSection.classList.contains('show')) {
+          entry.target.classList.add('visible');
         }
       });
     }, {
       threshold: 0.1
     });
 
-    // Observar a última seção para mostrar o rodapé
-    footerObserver.observe(document.querySelector('#ano2080'));
+    profileCards.forEach(card => {
+      profileObserver.observe(card);
+    });
+
+    // Observar textos do projeto apenas quando a seção estiver visível
+    const projetoObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && sobreProjetoSection.classList.contains('show')) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    projetoTexts.forEach(text => {
+      projetoObserver.observe(text);
+    });
+
+    // Observar cards de contato apenas quando a seção estiver visível
+    const contactObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && contatoSection.classList.contains('show')) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    contactCards.forEach(card => {
+      contactObserver.observe(card);
+    });
+
+    const footerObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          footer.classList.remove('hidden');
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    // Observar a última seção da homepage para mostrar o rodapé
+    const lastHomepageSection = document.querySelector('#ano2080');
+    if (lastHomepageSection) {
+      footerObserver.observe(lastHomepageSection);
+    }
   </script>
 </body>
 
