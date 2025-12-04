@@ -3,526 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Impacto dos Satélites na Observação do Céu</title>
+  <title data-lang="pt">Impacto dos Satélites na Observação do Céu</title>
+  <title data-lang="en">Impact of Satellites on Sky Observation</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    /* Estilos básicos */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
-      height: 100%;
-      scroll-behavior: smooth;
-      font-family: 'Montserrat', sans-serif;
-      background-color: #000;
-      color: white;
-    }
-
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      padding: 1rem;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(5px);
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 1.5rem;
-      z-index: 1000;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .header-title {
-      font-size: 1.5rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: color 0.3s ease;
-    }
-
-    .header-title:hover {
-      color: #a9d4ff;
-    }
-
-    nav {
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-size: 1rem;
-      transition: color 0.3s ease, text-shadow 0.3s ease;
-      padding: 0.5rem 1rem;
-      border-radius: 4px;
-    }
-
-    nav a:hover {
-      color: #a9d4ff;
-      text-shadow: 0 0 10px rgba(169, 212, 255, 0.5);
-    }
-
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        gap: 1rem;
-        padding: 1rem 0.5rem;
-      }
-
-      .header-title {
-        font-size: 1.2rem;
-        text-align: center;
-      }
-
-      nav {
-        gap: 1rem;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-
-      nav a {
-        font-size: 0.9rem;
-        padding: 0.4rem 0.8rem;
-      }
-
-      .profile-card {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
-
-      .profile-image {
-        width: 120px;
-        height: 120px;
-      }
-    }
-
-    section {
-      height: 100vh;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-      transition: background 1s ease-in-out;
-    }
-
-    .content {
-      /* background: rgba(0, 0, 0, 0.5); */ /* Removido */
-      /* backdrop-filter: blur(5px); */ /* Removido */
-      /* border-radius: 12px; */ /* Removido */
-      color: white;
-      padding: 2rem;
-      max-width: 800px;
-      text-align: center;
-      font-size: 1.2rem;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 1s ease, transform 1s ease;
-      text-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
-      /* border: 1px solid rgba(255, 255, 255, 0.1); */ /* Removido */
-    }
-
-    .content.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* URLs de Imagem Corrigidas para arquivos locais */
-    #ano1970 {
-      background-image: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.2)), url('1970.png');
-    }
-
-    #ano2025 {
-      background-image: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.2)), url('2025.png');
-    }
-
-    #ano2080 {
-      background-image: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.2)), url('2080.png');
-    }
-
-    #sobre-nos {
-      background-image: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.2)), url('1970.png');
-      min-height: 100vh;
-      height: auto;
-      padding: 6rem 2rem 4rem;
-      flex-direction: column;
-      align-items: center;
-      display: none;
-    }
-
-    #sobre-nos.show {
-      display: flex;
-    }
-
-    #sobre-projeto {
-      background-image: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.2)), url('1970.png');
-      min-height: 100vh;
-      height: auto;
-      padding: 6rem 2rem 4rem;
-      flex-direction: column;
-      align-items: center;
-      display: none;
-    }
-
-    #sobre-projeto.show {
-      display: flex;
-    }
-
-    #contato {
-      background-image: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.2)), url('1970.png');
-      min-height: 100vh;
-      height: auto;
-      padding: 6rem 2rem 4rem;
-      flex-direction: column;
-      align-items: center;
-      display: none;
-    }
-
-    #contato.show {
-      display: flex;
-    }
-
-    .contact-container {
-      max-width: 1200px;
-      width: 100%;
-      margin: 0 auto;
-    }
-
-    .contact-card {
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 12px;
-      padding: 2.5rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 1s ease, transform 1s ease;
-    }
-
-    .contact-card.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .contact-name {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #1a4d1a;
-      margin-bottom: 1rem;
-      font-family: 'Montserrat', sans-serif;
-    }
-
-    .contact-email {
-      font-size: 1.1rem;
-      color: #2d5a2d;
-      font-family: 'Montserrat', sans-serif;
-    }
-
-    .contact-email a {
-      color: #2d5a2d;
-      text-decoration: none;
-      transition: color 0.3s ease, text-decoration 0.3s ease;
-    }
-
-    .contact-email a:hover {
-      color: #1a4d1a;
-      text-decoration: underline;
-    }
-
-    .pdf-viewer-container {
-      width: 100%;
-      max-width: 1000px;
-      margin: 0 auto 3rem;
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 12px;
-      padding: 1rem;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    }
-
-    .pdf-viewer {
-      width: 100%;
-      height: 800px;
-      border: none;
-      border-radius: 8px;
-      min-height: 600px;
-    }
-
-    @media (max-width: 768px) {
-      .pdf-viewer {
-        height: 600px;
-        min-height: 400px;
-      }
-    }
-
-    .projeto-content {
-      max-width: 1200px;
-      width: 100%;
-      margin: 0 auto;
-    }
-
-    .projeto-section {
-      margin-bottom: 3rem;
-    }
-
-    .projeto-section h2 {
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-      color: white;
-      text-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
-    }
-
-    .projeto-section h3 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-top: 2rem;
-      margin-bottom: 1rem;
-      color: white;
-      text-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
-    }
-
-    .projeto-text {
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 12px;
-      padding: 2.5rem;
-      color: #333;
-      font-size: 1.1rem;
-      line-height: 1.8;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 1s ease, transform 1s ease;
-    }
-
-    .projeto-text.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .projeto-text p {
-      margin-bottom: 1.5rem;
-    }
-
-    .projeto-text em {
-      font-style: italic;
-      font-weight: 600;
-    }
-
-    .projeto-text ul {
-      list-style-type: disc;
-      padding-left: 2rem;
-      margin-bottom: 1.5rem;
-      line-height: 1.8;
-    }
-
-    .projeto-text ul li {
-      margin-bottom: 0.5rem;
-    }
-
-    .projeto-text strong {
-      font-weight: 700;
-      color: #1a4d1a;
-    }
-
-    .gifs-container {
-      display: flex;
-      gap: 2rem;
-      justify-content: center;
-      align-items: flex-start;
-      margin: 2rem 0;
-      flex-wrap: wrap;
-    }
-
-    .gif-wrapper {
-      flex: 1;
-      min-width: 300px;
-      max-width: 500px;
-      text-align: center;
-    }
-
-    @media (max-width: 768px) {
-      .gifs-container {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .gif-wrapper {
-        max-width: 100%;
-      }
-    }
-
-    .gif-wrapper img {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    }
-
-    .graph-container {
-      width: 100%;
-      margin: 2rem 0;
-      text-align: center;
-    }
-
-    .graph-container img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-      background: rgba(255, 255, 255, 0.95);
-      padding: 1rem;
-    }
-
-    .homepage-section {
-      display: flex;
-    }
-
-    .homepage-section.hide {
-      display: none;
-    }
-
-    .profile-container {
-      max-width: 1200px;
-      width: 100%;
-      margin: 0 auto;
-    }
-
-    .profile-card {
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 12px;
-      padding: 2.5rem;
-      margin-bottom: 2rem;
-      display: flex;
-      gap: 2rem;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 1s ease, transform 1s ease;
-    }
-
-    .profile-card.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .profile-image {
-      flex-shrink: 0;
-      width: 150px;
-      height: 150px;
-    }
-
-    .profile-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 50%;
-      border: 3px solid #90ee90;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    }
-
-    .profile-info {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .profile-name {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #1a4d1a;
-      margin-bottom: 1rem;
-      font-family: 'Montserrat', sans-serif;
-    }
-
-    .profile-section-title {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: #1a4d1a;
-      margin-bottom: 0.5rem;
-      font-family: 'Montserrat', sans-serif;
-      border-bottom: 1px solid #d3d3d3;
-      padding-bottom: 0.5rem;
-    }
-
-    .profile-biography {
-      color: #808080;
-      font-size: 1rem;
-      line-height: 1.6;
-      margin-top: 1rem;
-      font-family: 'Montserrat', sans-serif;
-    }
-
-    .profile-divider {
-      border-bottom: 1px solid #d3d3d3;
-      margin-top: 1rem;
-    }
-    
-    /* Novo estilo para os links das fontes */
-    .sources {
-      font-size: 0.9rem;
-      margin-top: 1.5rem;
-      font-style: italic;
-      opacity: 0.8;
-      line-height: 1.6;
-    }
-    
-    .sources a {
-      color: #a9d4ff; /* Azul claro para links */
-      text-decoration: underline;
-      transition: color 0.3s ease;
-    }
-    
-    .sources a:hover {
-      color: #ffffff;
-    }
-
-    footer {
-      display: flex;
-      align-items: center;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(5px);
-      padding: 0.5rem 1rem;
-      color: white;
-      font-size: 0.9rem;
-      font-family: 'Montserrat', sans-serif;
-      width: 100%;
-      justify-content: flex-start;
-      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.4);
-      border-top: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    footer img {
-      height: 40px;
-      margin-right: 0.5rem;
-      border-radius: 4px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.5);
-    }
-
-    footer.hidden {
-      display: none;
-    }
-  </style>
+  <link rel="stylesheet" href="./css/styles.css">
 </head>
+
 <body>
   <header>
-    <div class="header-title" id="header-title">
-      Simulando o impacto do lançamento de satélites nas observações astronômicas
+    <div style="display:flex; align-items:center; gap:0.75rem;">
+      <div class="header-title" id="header-title">
+          <span data-lang="pt">Simulando o impacto do lançamento de satélites nas observações astronômicas</span>
+          <span data-lang="en">Simulating the impact of satellite launches on astronomical observations</span>
+        </div>
     </div>
+
+    <!-- Botão hamburger para mobile -->
+    <button id="nav-toggle" aria-label="Abrir menu" title="Abrir menu">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"></path></svg>
+    </button>
+
+    <!-- Botão toggle de idioma (ícone + sigla) -->
+    <button id="lang-toggle-btn" aria-pressed="false" title="Mudar idioma">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"></path><path d="M2 12h20M12 2c2.5 4 2.5 12 0 20M12 2C9.5 6 9.5 12 12 20"></path></svg>
+      <span class="lang-label" id="lang-label">EN</span>
+    </button>
+
     <nav>
-      <a href="#" id="nav-sobre-nos">Sobre Nós</a>
-      <a href="#" id="nav-sobre-projeto">Sobre o Projeto</a>
-      <a href="#" id="nav-contato">Contato</a>
+      <a href="#" id="nav-sobre-nos"><span data-lang="pt">Sobre Nós</span><span data-lang="en">About Us</span></a>
+      <a href="#" id="nav-sobre-projeto"><span data-lang="pt">Sobre o Projeto</span><span data-lang="en">About the Project</span></a>
+      <a href="#" id="nav-contato"><span data-lang="pt">Contato</span><span data-lang="en">Contact</span></a>
     </nav>
   </header>
 
@@ -532,13 +43,19 @@
       <!-- Perfil Maycon -->
       <div class="profile-card">
         <div class="profile-image">
-          <img src="maycon.png" alt="Maycon Jorge Deláqua da Silva">
+          <img src="./img/maycon.png" alt="Maycon Jorge Deláqua da Silva">
         </div>
         <div class="profile-info">
           <div class="profile-name">Maycon Jorge Deláqua da Silva</div>
-          <div class="profile-section-title">Biografia</div>
+          <div data-lang="pt" class="profile-section-title">Biografia</div>
+          <div data-lang="en" class="profile-section-title">Biography</div>
           <div class="profile-biography">
-            Graduando em Engenharia de Computação pelo Instituto Federal de Educação, Ciência e Tecnologia Fluminense. Atualmente atuo no projeto de Iniciação Científica 'Elaboração de catálogo de quasares para ~6000 graus quadrados do S-PLUS DR6' onde usamos aprendizado de máquina e Ciência de Dados para classificação de objetos e na estimativa de redshifts fotométricos de quasares.
+            <div data-lang="pt">
+              Graduando em Engenharia de Computação pelo Instituto Federal de Educação, Ciência e Tecnologia Fluminense. Atualmente atuo no projeto de Iniciação Científica 'Elaboração de catálogo de quasares para ~6000 graus quadrados do S-PLUS DR6' onde usamos aprendizado de máquina e Ciência de Dados para classificação de objetos e na estimativa de redshifts fotométricos de quasares.
+            </div>
+            <div data-lang="en">
+              Undergraduate student in Computer Engineering at the Federal Institute of Education, Science and Technology Fluminense. Currently involved in a scientific initiation project developing a quasar catalog for approximately 6,000 square degrees of S-PLUS DR6, where we use machine learning and data science for object classification and photometric redshift estimation for quasars.
+            </div>
           </div>
           <div class="profile-divider"></div>
         </div>
@@ -547,13 +64,18 @@
       <!-- Perfil Pedro -->
       <div class="profile-card">
         <div class="profile-image">
-          <img src="pedro.jpg" alt="Pedro Henrique R. de Andrade">
+          <img src="./img/pedro.jpg" alt="Pedro Henrique Rocha de Andrade">
         </div>
         <div class="profile-info">
-          <div class="profile-name">Pedro Henrique R. de Andrade</div>
-          <div class="profile-section-title">Biografia</div>
+          <div class="profile-name">Pedro Henrique Rocha de Andrade</div>
+          <div data-lang="pt" class="profile-section-title">Biografia</div><div data-lang="en" class="profile-section-title">Biography</div>
           <div class="profile-biography">
-            Olá! Meu nome é Pedro Henrique e sou estudante de graduação em Engenharia de Computação no Instituto Federal Fluminense, no Rio de Janeiro, Brasil. Trabalho com astronomia desde 2022 e, atualmente, estou envolvido em meu terceiro projeto de pesquisa, com foco em estrelas e na estrutura da nossa Galáxia. Sou apaixonado por iniciativas de código aberto e por divulgação científica, buscando integrar métodos computacionais a problemas astrofísicos para tornar a ciência mais acessível e colaborativa.
+            <div data-lang="pt">
+              Olá! Meu nome é Pedro Henrique e sou estudante de graduação em Engenharia de Computação no Instituto Federal Fluminense, no Rio de Janeiro, Brasil. Trabalho com astronomia desde 2022 e, atualmente, estou envolvido em meu terceiro projeto de pesquisa, com foco em estrelas e na estrutura da nossa Galáxia. Sou apaixonado por iniciativas de código aberto e por divulgação científica, buscando integrar métodos computacionais a problemas astrofísicos para tornar a ciência mais acessível e colaborativa.
+            </div>
+            <div data-lang="en">
+              Hello! I'm Pedro Henrique, an undergraduate student in Computer Engineering at the Federal Institute Fluminense in Rio de Janeiro, Brazil. I've been working with astronomy since 2022 and I'm currently involved in my third research project, focused on stars and the structure of our Galaxy. I'm passionate about open-source initiatives and science outreach, aiming to combine computational methods with astrophysical problems to make science more accessible and collaborative.
+            </div>
           </div>
           <div class="profile-divider"></div>
         </div>
@@ -566,65 +88,121 @@
     <div class="projeto-content">
       <!-- Visualizador de PDF -->
       <div class="pdf-viewer-container">
-        <iframe class="pdf-viewer" src="relat.pdf#toolbar=1&navpanes=1&scrollbar=1" type="application/pdf">
-          <p>Seu navegador não suporta visualização de PDFs. <a href="relat.pdf" target="_blank">Clique aqui para baixar o PDF</a>.</p>
+        <iframe class="pdf-viewer" src="./files/relat.pdf#zoom=page-width&toolbar=1&navpanes=1&scrollbar=1" type="application/pdf">
+          <p>Seu navegador não suporta visualização de PDFs. <a href="./files/relat.pdf" target="_blank">Clique aqui para baixar o PDF</a>.</p>
         </iframe>
+        <!-- Área de download centralizada do banner e relatório -->
+        <div class="banner-download" aria-hidden="false">
+          <a href="./files/relat.pdf" download title="Baixar relatório"><span data-lang="pt">Baixar relatório</span><span data-lang="en">Download report (Only PT-BR)</span></a>
+          <!-- Link único para o banner: JS atualiza href/title conforme idioma -->
+          <a id="banner-download" data-href-pt="./files/BannerPT.pdf" data-href-en="./files/BannerEN.pdf" href="./files/BannerPT.pdf" download title="Baixar banner">
+            <span data-lang="pt">Baixar banner</span>
+            <span data-lang="en">Download banner</span>
+          </a>
+        </div>
       </div>
 
       <!-- Conteúdo do Projeto -->
       <div class="projeto-section">
         <div class="projeto-text">
-          <h2>ATUALIZAÇÕES RECENTES:</h2>
-          
-          <h3>Metodologia</h3>
-          
-          <p>
-            A metodologia adotada no STAR Clean integra duas frentes complementares: a geração de dados sintéticos fisicamente realistas por meio do simulador VOID e o desenvolvimento de uma arquitetura de deep learning especializada, denominada STAR, voltada para remoção adaptativa de rastros de satélites em observações astronômicas de alta cadência. Essa combinação permite avaliar e treinar a rede de forma controlada, com pares perfeitos de entrada contaminada e alvo limpo, impossíveis de serem obtidos em observações reais.
-          </p>
+            <div data-lang="pt">
+              <h2>ATUALIZAÇÕES RECENTES:</h2>
 
-          <h3>Simulação Física com o VOID</h3>
+              <h3>Metodologia</h3>
 
-          <p>
-            O VOID foi projetado como um pipeline físico completo capaz de reproduzir de maneira realista a cadeia de formação da imagem em sensores CMOS astronômicos. Para cada simulação, o módulo StarGenerator sintetiza campos estelares utilizando perfis PSF baseados na função de Moffat, garantindo representação precisa das caudas atmosféricas e preservação fotométrica pela normalização exata do fluxo. Magnitudes são convertidas para elétrons via equação de Pogson, e os parâmetros físicos — posição, FWHM e beta — são amostrados para representar condições variadas de observação.
-          </p>
+              <p>
+                A metodologia adotada no STAR Clean integra duas frentes complementares: a geração de dados sintéticos fisicamente realistas por meio do simulador VOID e o desenvolvimento de uma arquitetura de deep learning especializada, denominada STAR, voltada para remoção adaptativa de rastros de satélites em observações astronômicas de alta cadência. Essa combinação permite avaliar e treinar a rede de forma controlada, com pares perfeitos de entrada contaminada e alvo limpo, impossíveis de serem obtidos em observações reais.
+              </p>
 
-          <p>
-            O módulo SatelliteGenerator gera rastros dinâmicos através de superamostragem espacial da trajetória do satélite e integração contínua de PSFs ao longo do movimento, resultando em traços densos, contínuos e compatíveis com rastros observados em sensores reais. O CMOSSensor finaliza o processo aplicando a cadeia completa de ruído físico: fundo do céu, corrente de escuridão, shot noise, PRNU, ruído de leitura, ganho e saturação. Cada conjunto de dados inclui um cubo "Clean Ground Truth" (sem satélite) e um cubo "Dirty Input" (com satélite), ambos exportados em FITS e NPY com metadados físicos completos.
-          </p>
+              <h3>Simulação Física com o VOID</h3>
 
-          <h3>Arquitetura STAR para Remoção Adaptativa</h3>
+              <p>
+                O VOID foi projetado como um pipeline físico completo capaz de reproduzir de maneira realista a cadeia de formação da imagem em sensores CMOS astronômicos. Para cada simulação, o módulo StarGenerator sintetiza campos estelares utilizando perfis PSF baseados na função de Moffat, garantindo representação precisa das caudas atmosféricas e preservação fotométrica pela normalização exata do fluxo. Magnitudes são convertidas para elétrons via equação de Pogson, e os parâmetros físicos — posição, FWHM e beta — são amostrados para representar condições variadas de observação.
+              </p>
 
-          <p>
-            O modelo STAR utiliza uma arquitetura U-Net 2.5D, onde os frames temporais são tratados como canais de entrada, garantindo eficiência computacional superior às abordagens 3D tradicionais. O encoder emprega blocos residuais e pooling progressivo para extrair estruturas de alto nível, enquanto o bottleneck incorpora um módulo de atenção espaço-temporal capaz de distinguir componentes estáticos (estrelas) de elementos dinâmicos (satélites). A atenção temporal modula os canais para identificar frames contaminados, enquanto a atenção espacial produz máscaras suaves sobre regiões alteradas. A combinação residual das atenções permite que o modelo foque na remoção dos rastros sem degradar o fluxo estelar.
-          </p>
+              <p>
+                O módulo SatelliteGenerator gera rastros dinâmicos através de superamostragem espacial da trajetória do satélite e integração contínua de PSFs ao longo do movimento, resultando em traços densos, contínuos e compatíveis com rastros observados em sensores reais. O CMOSSensor finaliza o processo aplicando a cadeia completa de ruído físico: fundo do céu, corrente de escuridão, shot noise, PRNU, ruído de leitura, ganho e saturação. Cada conjunto de dados inclui um cubo "Clean Ground Truth" (sem satélite) e um cubo "Dirty Input" (com satélite), ambos exportados em FITS e NPY com metadados físicos completos.
+              </p>
 
-          <p>
-            O decoder reconstrói a imagem espacial com upsampling bilinear seguido de convoluções, evitando padrões artificiais e preservando o formato das estrelas. A rede não prediz diretamente a imagem limpa; em vez disso, estima o componente de ruído/satélite, que é subtraído da entrada para garantir melhor preservação da fotometria.
-          </p>
+              <h3>Arquitetura STAR para Remoção Adaptativa</h3>
 
-          <h3>Funções de Perda e Treinamento</h3>
+              <p>
+                O modelo STAR utiliza uma arquitetura U-Net 2.5D, onde os frames temporais são tratados como canais de entrada, garantindo eficiência computacional superior às abordagens 3D tradicionais. O encoder emprega blocos residuais e pooling progressivo para extrair estruturas de alto nível, enquanto o bottleneck incorpora um módulo de atenção espaço-temporal capaz de distinguir componentes estáticos (estrelas) de elementos dinâmicos (satélites). A atenção temporal modula os canais para identificar frames contaminados, enquanto a atenção espacial produz máscaras suaves sobre regiões alteradas. A combinação residual das atenções permite que o modelo foque na remoção dos rastros sem degradar o fluxo estelar.
+              </p>
 
-          <p>
-            A função de perda combina um termo L1 para reconstrução pixel a pixel e um termo de conservação fotométrica que penaliza erros no fluxo total da cena. Esse segundo componente é crucial, pois garante que o modelo preserve a integridade das estrelas mesmo quando os rastros de satélite passam sobre elas. O treinamento é conduzido com AdamW, política de redução de learning rate em plateau, e checkpoints automáticos. Os conjuntos de validação seguem a mesma distribuição física dos dados de treino, assegurando avaliação consistente.
-          </p>
+              <p>
+                O decoder reconstrói a imagem espacial com upsampling bilinear seguido de convoluções, evitando padrões artificiais e preservando o formato das estrelas. A rede não prediz diretamente a imagem limpa; em vez disso, estima o componente de ruído/satélite, que é subtraído da entrada para garantir melhor preservação da fotometria.
+              </p>
 
-          <h3>Métodos Clássicos para Comparação</h3>
+              <h3>Funções de Perda e Treinamento</h3>
 
-          <p>
-            Para estabelecer uma linha de base, três técnicas foram aplicadas às mesmas sequências temporais simuladas: Sigma Clipping, Filtro Mediano e LA Cosmic. Cada método foi implementado de forma padronizada, operando em precisão float64 e utilizando o mesmo cubo temporal. Todos os métodos geram uma imagem final por empilhamento médio dos frames processados. O Sigma Clipping remove outliers em séries temporais por pixel; o Filtro Mediano aplica suavização espacial frame a frame; e o LA Cosmic utiliza detecção morfológica de artefatos intensos baseada em gradientes e limiares fotométricos.
-          </p>
+              <p>
+                A função de perda combina um termo L1 para reconstrução pixel a pixel e um termo de conservação fotométrica que penaliza erros no fluxo total da cena. Esse segundo componente é crucial, pois garante que o modelo preserve a integridade das estrelas mesmo quando os rastros de satélite passam sobre elas. O treinamento é conduzido com AdamW, política de redução de learning rate em plateau, e checkpoints automáticos. Os conjuntos de validação seguem a mesma distribuição física dos dados de treino, assegurando avaliação consistente.
+              </p>
 
-          <p>
-            Os gráficos gerados são indicados na sessão de resultados. Os GIFs abaixo demonstram a comparação dos dois métodos: Sigma Clipping e STAR Clean. Nele, é possível observar a diferença em tempo real da remoção do satélite.
-          </p>
+              <h3>Métodos Clássicos para Comparação</h3>
+
+              <p>
+                Para estabelecer uma linha de base, três técnicas foram aplicadas às mesmas sequências temporais simuladas: Sigma Clipping, Filtro Mediano e LA Cosmic. Cada método foi implementado de forma padronizada, operando em precisão float64 e utilizando o mesmo cubo temporal. Todos os métodos geram uma imagem final por empilhamento médio dos frames processados. O Sigma Clipping remove outliers em séries temporais por pixel; o Filtro Mediano aplica suavização espacial frame a frame; e o LA Cosmic utiliza detecção morfológica de artefatos intensos baseada em gradientes e limiares fotométricos.
+              </p>
+
+              <p>
+                Os gráficos gerados são indicados na sessão de resultados. Os GIFs abaixo demonstram a comparação dos dois métodos: Sigma Clipping e STAR Clean. Nele, é possível observar a diferença em tempo real da remoção do satélite.
+              </p>
+            </div>
+            <div data-lang="en">
+              <h2>RECENT UPDATES:</h2>
+
+              <h3>Methodology</h3>
+
+              <p>
+                The methodology adopted in STAR Clean integrates two complementary approaches: generation of physically realistic synthetic data using the VOID simulator and development of a specialized deep learning architecture called STAR, aimed at adaptive removal of satellite trails in high-cadence astronomical observations. This combination enables training and evaluation under controlled conditions with perfect pairs of contaminated input and clean ground truth, which cannot be obtained in real observations.
+              </p>
+
+              <h3>Physical Simulation with VOID</h3>
+
+              <p>
+                VOID was designed as a complete physical pipeline capable of realistically reproducing the image formation chain in CMOS astronomical sensors. For each simulation, the StarGenerator module synthesizes star fields using PSF profiles based on the Moffat function, ensuring accurate representation of atmospheric wings and photometric preservation via exact flux normalization. Magnitudes are converted to electrons using Pogson's equation, and physical parameters — position, FWHM and beta — are sampled to represent varied observing conditions.
+              </p>
+
+              <p>
+                The SatelliteGenerator module creates dynamic trails through spatial supersampling of the satellite trajectory and continuous integration of PSFs along the motion, resulting in dense, continuous traces compatible with trails observed in real sensors. The CMOSSensor finalizes the process applying the full chain of physical noise: sky background, dark current, shot noise, PRNU, read noise, gain and saturation. Each dataset includes a "Clean Ground Truth" cube (without satellite) and a "Dirty Input" cube (with satellite), both exported in FITS and NPY with full physical metadata.
+              </p>
+
+              <h3>STAR Architecture for Adaptive Removal</h3>
+
+              <p>
+                The STAR model uses a 2.5D U-Net architecture where temporal frames are treated as channels, providing computational efficiency superior to traditional 3D approaches. The encoder uses residual blocks and progressive pooling to extract high-level structures, while the bottleneck incorporates a spatio-temporal attention module able to distinguish static components (stars) from dynamic elements (satellites). Temporal attention modulates channels to identify contaminated frames, while spatial attention produces smooth masks over altered regions. Residual combination of attentions allows the model to focus on removing trails without degrading stellar flux.
+              </p>
+
+              <p>
+                The decoder reconstructs the spatial image with bilinear upsampling followed by convolutions, avoiding checkerboard artifacts and preserving star shapes. The network does not predict the clean image directly; instead, it estimates the noise/satellite component which is subtracted from the input to better preserve photometry.
+              </p>
+
+              <h3>Loss Functions and Training</h3>
+
+              <p>
+                The loss combines an L1 term for pixel-wise reconstruction and a photometric conservation term that penalizes errors in the total scene flux. This second component is crucial to ensure the model preserves stellar integrity even when satellite trails cross bright stars. Training is conducted with AdamW, a reduce-on-plateau learning rate scheduler, and automatic checkpoints. Validation sets follow the same physical distribution as training sets to ensure consistent evaluation.
+              </p>
+
+              <h3>Classical Methods for Comparison</h3>
+
+              <p>
+                To establish baselines, three techniques were applied to the same simulated temporal sequences: Sigma Clipping, Median Filter and LA Cosmic. Each method was implemented in a standardized way, operating in float64 precision and using the same data cube. All methods produce a final image by averaging processed frames. Sigma Clipping removes outliers in temporal series per pixel; the Median Filter applies spatial smoothing frame by frame; LA Cosmic performs morphological detection of intense artifacts using gradients and photometric thresholds.
+              </p>
+
+              <p>
+                The generated plots are indicated in the results section. The GIFs below show a comparison between the two methods: Sigma Clipping and STAR Clean, illustrating real-time differences in trail removal.
+              </p>
+            </div>
 
           <!-- GIFs lado a lado -->
           <div class="gifs-container">
             <div class="gif-wrapper">
-              <img src="sample_0008_sigma_removal.gif" alt="Sigma Clipping Removal">
+              <img src="./img/sample_0008_sigma_removal.gif" alt="Sigma Clipping Removal">
             </div>
             <div class="gif-wrapper">
-              <img src="sample_0008_star_removal.gif" alt="STAR Clean Removal">
+              <img src="./img/sample_0008_star_removal.gif" alt="STAR Clean Removal">
             </div>
           </div>
 
@@ -649,7 +227,7 @@
           </ul>
 
           <div class="graph-container">
-            <img src="tradeoff_speed_quality.png" alt="Trade-off entre velocidade e qualidade">
+            <img src="./img/tradeoff_speed_quality.png" alt="Trade-off entre velocidade e qualidade">
           </div>
 
           <h3>2. Conservação Fotométrica</h3>
@@ -691,7 +269,7 @@
           </p>
 
           <div class="graph-container">
-            <img src="flux_preservation.png" alt="Preservação de fluxo fotométrico">
+            <img src="./img/flux_preservation.png" alt="Preservação de fluxo fotométrico">
           </div>
 
           <h3>3. Tempo de Processamento e Throughput</h3>
@@ -731,7 +309,7 @@
           </p>
 
           <div class="graph-container">
-            <img src="processing_speed.png" alt="Velocidade de processamento">
+            <img src="./img/processing_speed.png" alt="Velocidade de processamento">
           </div>
 
           <h3>4. Métricas Científicas de Qualidade da Reconstrução</h3>
@@ -781,7 +359,7 @@
           </p>
 
           <div class="graph-container">
-            <img src="scientific_metrics.png" alt="Métricas científicas">
+            <img src="./img/scientific_metrics.png" alt="Métricas científicas">
           </div>
 
           <h3>5. Impacto em Surveys: Recuperação de Dados</h3>
@@ -802,7 +380,7 @@
           </p>
 
           <div class="graph-container">
-            <img src="survey_impact.png" alt="Impacto em surveys">
+            <img src="./img/survey_impact.png" alt="Impacto em surveys">
           </div>
 
           <h2>Síntese dos Resultados</h2>
@@ -834,6 +412,202 @@
           <p>
             Em conjunto, esses resultados mostram que a integração entre simulação física realista e uma arquitetura neural especializada não apenas resolve as limitações conhecidas dos métodos clássicos, como estabelece um novo padrão para o pré-processamento astronômico diante da crescente contaminação por mega-constelações. O STAR Clean emerge, assim, como uma solução robusta, escalável e cientificamente confiável, capaz de preservar a qualidade dos dados e reduzir significativamente as perdas observacionais em surveys atuais e futuros.
           </p>
+          <div data-lang="en">
+            <p>
+              Together, these results show that combining realistic physical simulation with a specialized neural architecture not only addresses the well-known limitations of classical methods but also sets a new standard for pre-processing in astronomy in the face of increasing contamination from mega-constellations. STAR Clean therefore emerges as a robust, scalable, and scientifically reliable solution, capable of preserving data quality and significantly reducing observational losses in current and future surveys.
+            </p>
+
+            <h2>Results</h2>
+
+            <p>
+              The evaluation of STAR Clean was performed using quantitative metrics, photometric analysis and performance tests, as well as direct comparisons with widely used classical methods in astronomy. The results demonstrate that the proposed model significantly outperforms traditional approaches both in scientific recovery and operational speed. Below we describe the main findings and interpret the accompanying plots.
+            </p>
+
+            <h3>1. Computational Performance vs. Data Preservation</h3>
+
+            <p>
+              The first plot ("Processing Speed vs. Data Preservation") shows the typical trade-off between speed and scientific fidelity. STAR Clean, on both GPU and CPU, achieves high photometric preservation (~98–100%) while offering substantially lower processing times compared to traditional methods.
+            </p>
+
+            <ul>
+              <li>STAR Clean (GPU) shows the best overall performance: frame times on the order of tens of milliseconds with near-ideal flux preservation.</li>
+              <li>Sigma Clipping appears to preserve nearly 100% of flux numerically because it removes too much data (masking), which hides structural information despite numerical integrity.</li>
+              <li>LA Cosmic exhibits high processing times (>2 s/frame) and limited preservation (~75%).</li>
+              <li>The Median Filter is fast but strongly alters photometric flux (<60%).</li>
+              <li>The green region indicates the "ideal regime": high throughput with minimal scientific loss — occupied exclusively by STAR Clean.</li>
+            </ul>
+
+            <div class="graph-container">
+              <img src="./img/tradeoff_speed_quality.png" alt="Trade-off between speed and quality">
+            </div>
+
+            <h3>2. Photometric Conservation</h3>
+
+            <p>
+              The second set of plots (Total Flux, Preservation Rate and Flux Conservation Error) analyzes photometric accuracy in detail.
+            </p>
+
+            <p>
+              <strong>(a) Total Photometric Flux</strong>
+            </p>
+            <ul>
+              <li>The Ground Truth flux is 228.4 ADU.</li>
+              <li>STAR Clean reconstructs 224.8 ADU (minimal error).</li>
+              <li>Sigma Clipping reports values close to the true flux due to masking, but with structural loss.</li>
+              <li>The Median Filter severely distorts the scene, producing 388.1 ADU — inflated by excessive smoothing.</li>
+            </ul>
+
+            <p>
+              <strong>(b) Preservation Rate</strong>
+            </p>
+            <ul>
+              <li>STAR Clean: 98.4%, the highest among methods that truly reconstruct the scene.</li>
+              <li>Median Filter: 169.9%, indicating artificial overestimation of flux.</li>
+              <li>Sigma Clipping: 100% numerically, but lacking morphological fidelity.</li>
+            </ul>
+
+            <p>
+              <strong>(c) Flux Conservation Error</strong>
+            </p>
+            <ul>
+              <li>STAR Clean: 1.6%, typical of models that preserve realistic photometry.</li>
+              <li>Sigma Clipping: 0%, but at the cost of removing content.</li>
+              <li>Median Filter: extreme error (~70%).</li>
+            </ul>
+
+            <div class="graph-container">
+              <img src="./img/flux_preservation.png" alt="Flux preservation">
+            </div>
+
+            <h3>3. Processing Time and Throughput</h3>
+
+            <p>
+              The third group of plots compares time per frame and operational throughput (frames per hour), both critical for high-cadence applications:
+            </p>
+
+            <p>
+              <strong>(a) Time per Frame</strong>
+            </p>
+            <ul>
+              <li>STAR Clean (GPU): 0.034 s</li>
+              <li>STAR Clean (CPU): 0.087 s</li>
+              <li>Sigma Clipping: 0.929 s</li>
+              <li>LA Cosmic: 2.5 s</li>
+              <li>Median Filter: 0.300 s</li>
+            </ul>
+
+            <p>
+              STAR Clean processes images ~27× faster than Sigma Clipping and ~73× faster than LA Cosmic.
+            </p>
+
+            <p>
+              <strong>(b) Throughput</strong>
+            </p>
+            <ul>
+              <li>STAR Clean (GPU): 107,517 frames/hour</li>
+              <li>STAR Clean (CPU): 41,327 frames/hour</li>
+              <li>Sigma Clipping: 3,874 frames/hour</li>
+              <li>LA Cosmic: 1,440 frames/hour</li>
+              <li>Median Filter: 12,000 frames/hour</li>
+            </ul>
+
+            <div class="graph-container">
+              <img src="./img/processing_speed.png" alt="Processing speed">
+            </div>
+
+            <h3>4. Scientific Quality Metrics</h3>
+
+            <p>
+              The fourth set of plots evaluates PSNR, SSIM, photometric accuracy and edge preservation.
+            </p>
+
+            <p>
+              <strong>PSNR</strong>
+            </p>
+            <ul>
+              <li>STAR Clean achieves 38.5 dB, well above classical methods.</li>
+              <li>Sigma Clipping reaches only 22.1 dB.</li>
+              <li>LA Cosmic reaches 28.3 dB.</li>
+            </ul>
+
+            <p>
+              <strong>SSIM</strong>
+            </p>
+            <ul>
+              <li>STAR Clean: 0.98, showing near-perfect structural preservation.</li>
+              <li>Sigma Clipping: 0.71.</li>
+              <li>LA Cosmic: 0.84.</li>
+            </ul>
+
+            <p>
+              <strong>Photometric Accuracy</strong>
+            </p>
+            <ul>
+              <li>STAR Clean: 99.7%, nearly perfect.</li>
+              <li>Sigma Clipping: only 33.4%.</li>
+              <li>LA Cosmic: 75%.</li>
+            </ul>
+
+            <p>
+              <strong>Edge Preservation</strong>
+            </p>
+            <ul>
+              <li>STAR Clean: 0.94, preserving star morphology.</li>
+              <li>LA Cosmic: 0.68.</li>
+              <li>Sigma Clipping: 0.45.</li>
+            </ul>
+
+            <div class="graph-container">
+              <img src="./img/scientific_metrics.png" alt="Scientific metrics">
+            </div>
+
+            <h3>5. Impact on Surveys: Data Recovery</h3>
+
+            <p>
+              The final plot measures how many contaminated observations can be recovered in a survey of 10,000 images with 15% contamination.
+            </p>
+
+            <ul>
+              <li>Without processing: 8,500 usable images.</li>
+              <li>STAR Clean: 9,130 images recovered (91.3%).</li>
+              <li>LA Cosmic: 7,500 (75%).</li>
+              <li>Sigma Clipping: only 3,340 (33%).</li>
+            </ul>
+
+            <div class="graph-container">
+              <img src="./img/survey_impact.png" alt="Survey impact">
+            </div>
+
+            <h2>Summary of Results</h2>
+
+            <p>
+              The five groups of plots consistently indicate that:
+            </p>
+
+            <ul>
+              <li>STAR Clean provides the best balance between speed, photometric preservation and structural quality.</li>
+              <li>Classical methods fail in at least one essential aspect: accuracy, speed or morphological integrity.</li>
+              <li>STAR Clean recovers more than 90% of affected observations, outperforming traditional approaches.</li>
+            </ul>
+
+            <h2>Conclusion</h2>
+
+            <p>
+              The obtained results demonstrate that STAR Clean represents a significant advance in removing satellite trails from astronomical images, combining scientific accuracy, photometric preservation and operational performance at levels that greatly surpass traditional methods. Comparative analysis shows the proposed architecture achieves a rare balance: it processes frames in a fraction of the time required by classical techniques while maintaining stellar flux integrity and morphological fidelity. Performance plots confirm STAR Clean occupies the ideal region of the trade-off between speed and data preservation, achieving millisecond-scale frame times and photometric preservation above 98%.
+            </p>
+
+            <p>
+              Photometric and structural metrics reinforce this consistency: the model attains substantially higher PSNR and SSIM values than the alternatives while showing the lowest flux conservation error among all compared methods. In adverse scenarios, such as trails crossing bright stars or multiple simultaneous tracks, STAR Clean maintains accuracy above 99% in recovering original source brightness, avoiding the excessive smoothing of the median filter and the structural loss caused by Sigma Clipping. Additionally, the model preserves edges and stellar profiles far more efficiently than approaches like LA Cosmic, reducing interpolation artifacts and ensuring visually continuous reconstructions.
+            </p>
+
+            <p>
+              Another crucial point is scalability. Throughput results show STAR Clean is compatible with high-cadence pipelines and modern survey operations, processing over 100k frames per hour on GPU and tens of thousands on CPU. This capability translates directly into scientific impact: when applied to a simulated scenario of 10k images with 15% contamination, STAR Clean recovered over 91% of affected observations — almost three times the performance of traditional methods like LA Cosmic and far above the limited efficiency of Sigma Clipping.
+            </p>
+
+            <p>
+              Altogether, these results indicate that integrating realistic physical simulation with a specialized neural model not only overcomes the limitations of classical methods but also establishes a new standard for pre-processing in the era of mega-constellations. STAR Clean thus emerges as a robust, scalable, and scientifically trustworthy solution, preserving data quality and significantly mitigating observational losses in current and future surveys.
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -844,17 +618,27 @@
     <div class="contact-container">
       <!-- Contato Maycon -->
       <div class="contact-card">
-        <div class="contact-name">Maycon Jorge Deláqua da Silva</div>
-        <div class="contact-email">
-          <a href="mailto:maycondelaqua46@gmail.com">maycondelaqua46@gmail.com</a>
+        <div class="contact-image">
+          <img src="./img/maycon.png" alt="Maycon Jorge Deláqua da Silva">
+        </div>
+        <div>
+          <div class="contact-name">Maycon Jorge Deláqua da Silva</div>
+          <div class="contact-email">
+            <a href="mailto:maycondelaqua46@gmail.com">maycondelaqua46@gmail.com</a>
+          </div>
         </div>
       </div>
 
       <!-- Contato Pedro -->
       <div class="contact-card">
-        <div class="contact-name">Pedro Henrique R. de Andrade</div>
-        <div class="contact-email">
-          <a href="mailto:pedroiff0@gmail.com">pedroiff0@gmail.com</a>
+        <div class="contact-image">
+          <img src="./img/pedro.jpg" alt="Pedro Henrique R. de Andrade">
+        </div>
+        <div>
+          <div class="contact-name">Pedro Henrique R. de Andrade</div>
+          <div class="contact-email">
+            <a href="mailto:pedroiff0@gmail.com">pedroiff0@gmail.com</a>
+          </div>
         </div>
       </div>
     </div>
@@ -863,250 +647,108 @@
   <!-- SEÇÃO 1970 ATUALIZADA -->
   <section id="ano1970" class="homepage-section">
     <div class="content">
-      <p>
-        Em 1970, o número de <em>objetos totais</em> rastreados em órbita terrestre (incluindo satélites ativos, inativos e detritos) aproximava-se de 2.000. Em locais com céus perfeitamente escuros (Bortle 1, sem poluição luminosa), o olho humano pode detectar estrelas até a magnitude 6.5, o que totaliza cerca de 9.000 estrelas em <em>toda</em> a esfera celeste, embora apenas cerca de 2.000 a 3.000 sejam visíveis em <em>um determinado momento</em> (metade do céu, com alguma perda perto do horizonte).
-      </p>
-      <!-- Fontes atualizadas com links -->
-      <p class="sources">
-        (Fontes:
-        <a href="https://www.esa.int/Space_Safety/Space_Debris" target="_blank">Relatórios da ESA sobre detritos espaciais</a>;
-        <a href="https://www.darksky.org/" target="_blank">Artigos da International Dark-Sky Association (IDA)</a>
-        )
-      </p>
+      <div data-lang="pt">
+        <p>
+          Em 1970, o número de <em>objetos totais</em> rastreados em órbita terrestre (incluindo satélites ativos, inativos e detritos) aproximava-se de 2.000. Em locais com céus perfeitamente escuros (Bortle 1, sem poluição luminosa), o olho humano pode detectar estrelas até a magnitude6.5, o que totaliza cerca de 9.000 estrelas em <em>toda</em> a esfera celeste, embora apenas cerca de 2.000 a 3.000 sejam visíveis em <em>um determinado momento</em> (metade do céu, com alguma perda perto do horizonte).
+        </p>
+        <p class="sources">
+          (Fontes:
+          <a href="https://www.esa.int/Space_Safety/Space_Debris" target="_blank">Relatórios da ESA sobre detritos espaciais</a>;
+          <a href="https://www.darksky.org/" target="_blank">Artigos da International Dark-Sky Association (IDA)</a>
+          )
+        </p>
+      </div>
+      <div data-lang="en">
+        <p>
+          In 1970, the total number of objects tracked in Earth orbit (including active satellites, inactive ones and debris) was close to 2,000. In perfectly dark skies (Bortle 1, no light pollution), the human eye can detect stars down to about magnitude 6.5, which corresponds to roughly 9,000 stars across the entire celestial sphere, although only about 2,000 to 3,000 are visible at any given time (half the sky, with some loss near the horizon).
+        </p>
+        <p class="sources">
+          (Sources:
+          <a href="https://www.esa.int/Space_Safety/Space_Debris" target="_blank">ESA reports on space debris</a>;
+          <a href="https://www.darksky.org/" target="_blank">International Dark-Sky Association (IDA)</a>
+          )
+        </p>
+      </div>
     </div>
   </section>
 
   <!-- SEÇÃO 2025 ATUALIZADA -->
   <section id="ano2025" class="homepage-section">
     <div class="content">
-      <p>
-        Em 2025, o número de satélites ativos em órbita de fato ultrapassou os 12.000, com mais de 6.000 pertencentes à constelação Starlink (números de final de 2024/início de 2025). No entanto, a afirmação de que 2.000 estrelas são visíveis em áreas <em>urbanas</em> está incorreta. Em áreas urbanas típicas (Bortle 7-8), a poluição luminosa limita a observação a menos de 200 estrelas, e em centros de grandes cidades (Bortle 9), esse número pode cair para menos de 50. O número de 2.000 estrelas é representativo de um céu rural escuro, não de um céu urbano.
-      </p>
-      <!-- Fontes atualizadas com links -->
-      <p class="sources">
-        (Fontes:
-        <a href="https://www.ucsusa.org/resources/satellite-database" target="_blank">UCS Satellite Database</a>;
-        <a href="https://celestrak.org/" target="_blank">CelesTrak</a>;
-        <a href="https://skyandtelescope.org/astronomy-resources/light-pollution-and-astronomy-the-bortle-scale/" target="_blank">Artigos sobre a Escala de Bortle</a>
-        )
-      </p>
+      <div data-lang="pt">
+        <p>
+          Em 2025, o número de satélites ativos em órbita de fato ultrapassou os 12.000, com mais de 6.000 pertencentes à constelação Starlink (números de final de 2024/início de 2025). Em áreas urbanas típicas (Bortle 7–8), a poluição luminosa limita a observação a menos de 200 estrelas, e em centros de grandes cidades (Bortle 9) esse número pode cair para menos de 50. O número de 2.000 estrelas é representativo de um céu rural escuro, não de um céu urbano.
+        </p>
+        <p class="sources">
+          (Fontes:
+          <a href="https://www.ucsusa.org/resources/satellite-database" target="_blank">UCS Satellite Database</a>;
+          <a href="https://celestrak.org/" target="_blank">CelesTrak</a>;
+          <a href="https://skyandtelescope.org/astronomy-resources/light-pollution-and-astronomy-the-bortle-scale/" target="_blank">Artigos sobre a Escala de Bortle</a>
+          )
+        </p>
+      </div>
+      <div data-lang="en">
+        <p>
+          By 2025, the number of active satellites in orbit exceeded 12,000, with over 6,000 belonging to the Starlink constellation (late 2024 / early 2025 figures). In typical urban settings (Bortle 7–8), light pollution limits visible stars to fewer than 200, and in major city centers (Bortle 9) that number can drop below 50. The figure of 2,000 stars corresponds to a dark rural sky, not an urban sky.
+        </p>
+        <p class="sources">
+          (Sources:
+          <a href="https://www.ucsusa.org/resources/satellite-database" target="_blank">UCS Satellite Database</a>;
+          <a href="https://celestrak.org/" target="_blank">CelesTrak</a>;
+          <a href="https://skyandtelescope.org/astronomy-resources/light-pollution-and-astronomy-the-bortle-scale/" target="_blank">Articles on the Bortle Scale</a>
+          )
+        </p>
+      </div>
     </div>
   </section>
 
   <!-- SEÇÃO 2080 CORRIGIDA -->
   <section id="ano2080" class="homepage-section">
     <div class="content">
-      <p>
-        Projeções (baseadas em registros de empresas e aprovações de agências reguladoras) indicam que o número de satélites em órbita poderá ultrapassar 50.000 a 100.000 já na década de 2030 (o número de 70.000 até 2080 é, portanto, plausível, mas talvez conservador). Esse cenário agrava o risco de colisões (Síndrome de Kessler) e aumenta o <em>brilho difuso do céu</em> (sky-glow) causado pela luz solar refletida nos satélites. Estudos alertam que esse brilho de fundo pode "esconder" as estrelas mais fracas, reduzindo o número de estrelas visíveis a olho nu mesmo em locais remotos (anteriormente escuros), potencialmente limitando a observação a algumas centenas, como afirmado.
-      </p>
-      <p class="sources">
-        (Fontes:
-        <a href="https://ras.ac.uk/" target="_blank">Artigos da Royal Astronomical Society (RAS)</a>;
-        <a href="https://cps.iau.org/" target="_blank">Relatórios do Centro da IAU (CPS)</a>;
-        <a href="https://www.nature.com/articles/d41586-024-00430-6" target="_blank">Artigos da "Nature"</a>
-        )
-      </p>
+      <div data-lang="pt">
+        <p>
+          Projeções (baseadas em registros de empresas e aprovações de agências reguladoras) indicam que o número de satélites em órbita poderá ultrapassar 50.000 a 100.000 já na década de 2030 (o número de 70.000 até 2080 é, portanto, plausível, mas talvez conservador). Esse cenário agrava o risco de colisões (Síndrome de Kessler) e aumenta o <em>brilho difuso do céu</em> (sky-glow) causado pela luz solar refletida nos satélites. Estudos alertam que esse brilho de fundo pode "esconder" as estrelas mais fracas, reduzindo o número de estrelas visíveis a olho nu mesmo em locais remotos (anteriormente escuros), potencialmente limitando a observação a algumas centenas, como afirmado.
+        </p>
+        <p class="sources">
+          (Fontes:
+          <a href="https://ras.ac.uk/" target="_blank">Artigos da Royal Astronomical Society (RAS)</a>;
+          <a href="https://cps.iau.org/" target="_blank">Relatórios do Centro da IAU (CPS)</a>;
+          <a href="https://www.nature.com/articles/d41586-024-00430-6" target="_blank">Artigos da "Nature"</a>
+          )
+        </p>
+      </div>
+      <div data-lang="en">
+        <p>
+          Projections (based on company filings and regulator approvals) indicate that the number of satellites in orbit could exceed 50,000 to 100,000 by the 2030s (the figure of 70,000 by 2080 is therefore plausible, if possibly conservative). This scenario increases collision risk (Kessler syndrome) and raises the sky's diffuse brightness (sky-glow) caused by sunlight reflected off satellites. Studies warn this added background can "hide" fainter stars, reducing naked-eye visibility even at previously dark sites, potentially limiting observations to only a few hundred stars as suggested.
+        </p>
+        <p class="sources">
+          (Sources:
+          <a href="https://ras.ac.uk/" target="_blank">Royal Astronomical Society (RAS)</a>;
+          <a href="https://cps.iau.org/" target="_blank">IAU CPS reports</a>;
+          <a href="https://www.nature.com/articles/d41586-024-00430-6" target="_blank">Articles in Nature</a>
+          )
+        </p>
+      </div>
     </div>
   </section>
 
-  <footer id="page-footer" class="hidden">
+  <footer id="page-footer">
     <a href="https://darksky.org" target="_blank" style="display: flex; align-items: center; text-decoration: none; color: white;">
       <!-- Imagem do Rodapé Original -->
-      <img src="ida.png" alt="IDA">
-      <span>Este projeto é apoiado pela International Dark-Sky Association</span>
+      <img src="./img/ida.png" alt="IDA">
+      <div>
+        <span data-lang="pt">Este projeto é apoiado pela International Dark-Sky Association</span>
+        <span data-lang="en">This project is supported by the International Dark-Sky Association</span>
+      </div>
     </a>
+    <div style="margin-left: auto;">
+      <button id="back-to-top" class="back-to-top" title="Voltar ao topo">
+        <span data-lang="pt">Voltar ao topo</span>
+        <span data-lang="en">Back to top</span>
+      </button>
+    </div>
   </footer>
+    <script src="./js/script.js"></script>
+  </body>
 
-  <script>
-    // Navegação entre páginas
-    const headerTitle = document.getElementById('header-title');
-    const navSobreNos = document.getElementById('nav-sobre-nos');
-    const navSobreProjeto = document.getElementById('nav-sobre-projeto');
-    const navContato = document.getElementById('nav-contato');
-    const sobreNosSection = document.getElementById('sobre-nos');
-    const sobreProjetoSection = document.getElementById('sobre-projeto');
-    const contatoSection = document.getElementById('contato');
-    const homepageSections = document.querySelectorAll('.homepage-section');
-    const footer = document.getElementById('page-footer');
-
-    // Função para mostrar a homepage
-    function showHomepage() {
-      homepageSections.forEach(section => {
-        section.classList.remove('hide');
-      });
-      sobreNosSection.classList.remove('show');
-      sobreProjetoSection.classList.remove('show');
-      contatoSection.classList.remove('show');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      footer.classList.add('hidden');
-    }
-
-    // Função para mostrar a seção "Sobre Nós"
-    function showSobreNos() {
-      homepageSections.forEach(section => {
-        section.classList.add('hide');
-      });
-      sobreNosSection.classList.add('show');
-      sobreProjetoSection.classList.remove('show');
-      contatoSection.classList.remove('show');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      footer.classList.add('hidden');
-      
-      // Animar os cards quando aparecer
-      setTimeout(() => {
-        const profileCards = document.querySelectorAll('.profile-card');
-        profileCards.forEach((card, index) => {
-          setTimeout(() => {
-            card.classList.add('visible');
-          }, index * 200);
-        });
-      }, 100);
-    }
-
-    // Função para mostrar a seção "Sobre o Projeto"
-    function showSobreProjeto() {
-      homepageSections.forEach(section => {
-        section.classList.add('hide');
-      });
-      sobreNosSection.classList.remove('show');
-      sobreProjetoSection.classList.add('show');
-      contatoSection.classList.remove('show');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      footer.classList.add('hidden');
-      
-      // Animar o conteúdo quando aparecer
-      setTimeout(() => {
-        const projetoTexts = document.querySelectorAll('.projeto-text');
-        projetoTexts.forEach(text => {
-          text.classList.add('visible');
-        });
-      }, 100);
-    }
-
-    // Função para mostrar a seção "Contato"
-    function showContato() {
-      homepageSections.forEach(section => {
-        section.classList.add('hide');
-      });
-      sobreNosSection.classList.remove('show');
-      sobreProjetoSection.classList.remove('show');
-      contatoSection.classList.add('show');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      footer.classList.add('hidden');
-      
-      // Animar os cards de contato quando aparecer
-      setTimeout(() => {
-        const contactCards = document.querySelectorAll('.contact-card');
-        contactCards.forEach((card, index) => {
-          setTimeout(() => {
-            card.classList.add('visible');
-          }, index * 200);
-        });
-      }, 100);
-    }
-
-    // Event listeners
-    headerTitle.addEventListener('click', (e) => {
-      e.preventDefault();
-      showHomepage();
-    });
-
-    navSobreNos.addEventListener('click', (e) => {
-      e.preventDefault();
-      showSobreNos();
-    });
-
-    navSobreProjeto.addEventListener('click', (e) => {
-      e.preventDefault();
-      showSobreProjeto();
-    });
-
-    navContato.addEventListener('click', (e) => {
-      e.preventDefault();
-      showContato();
-    });
-
-    // Observadores para animações
-    const contents = document.querySelectorAll('.content');
-    const profileCards = document.querySelectorAll('.profile-card');
-    const projetoTexts = document.querySelectorAll('.projeto-text');
-    const contactCards = document.querySelectorAll('.contact-card');
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, {
-      threshold: 0.1
-    });
-
-    contents.forEach(content => {
-      observer.observe(content);
-    });
-
-    // Observar cards de perfil apenas quando a seção estiver visível
-    const profileObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && sobreNosSection.classList.contains('show')) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, {
-      threshold: 0.1
-    });
-
-    profileCards.forEach(card => {
-      profileObserver.observe(card);
-    });
-
-    // Observar textos do projeto apenas quando a seção estiver visível
-    const projetoObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && sobreProjetoSection.classList.contains('show')) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, {
-      threshold: 0.1
-    });
-
-    projetoTexts.forEach(text => {
-      projetoObserver.observe(text);
-    });
-
-    // Observar cards de contato apenas quando a seção estiver visível
-    const contactObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && contatoSection.classList.contains('show')) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, {
-      threshold: 0.1
-    });
-
-    contactCards.forEach(card => {
-      contactObserver.observe(card);
-    });
-
-    const footerObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          footer.classList.remove('hidden');
-        }
-      });
-    }, {
-      threshold: 0.1
-    });
-
-    // Observar a última seção da homepage para mostrar o rodapé
-    const lastHomepageSection = document.querySelector('#ano2080');
-    if (lastHomepageSection) {
-      footerObserver.observe(lastHomepageSection);
-    }
-  </script>
-</body>
-
-</html>
+  </html>
